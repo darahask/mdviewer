@@ -68,6 +68,10 @@ fn unwatch_file(path: String, state: State<WatcherState>) {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    // Workaround for webkit2gtk + Mesa EGL crash on process exit (upstream bug).
+    // Disabling GPU compositing skips EGL init entirely, so there's nothing to crash on cleanup.
+    std::env::set_var("WEBKIT_DISABLE_COMPOSITING_MODE", "1");
+
     let watcher = WatcherState(Mutex::new(FileWatcher::new()));
 
     tauri::Builder::default()

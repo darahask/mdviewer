@@ -80,6 +80,7 @@ export function Editor({ content, onChange }: EditorProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
   const onChangeRef = useRef(onChange);
+  const suppressRef = useRef(false);
   onChangeRef.current = onChange;
 
   useEffect(() => {
@@ -98,7 +99,7 @@ export function Editor({ content, onChange }: EditorProps) {
           keymap.of([...defaultKeymap, ...historyKeymap, ...searchKeymap]),
           editorTheme,
           EditorView.updateListener.of((update) => {
-            if (update.docChanged) {
+            if (update.docChanged && !suppressRef.current) {
               onChangeRef.current(update.state.doc.toString());
             }
           }),
@@ -117,9 +118,11 @@ export function Editor({ content, onChange }: EditorProps) {
     if (!view) return;
     const current = view.state.doc.toString();
     if (current !== content) {
+      suppressRef.current = true;
       view.dispatch({
         changes: { from: 0, to: current.length, insert: content },
       });
+      suppressRef.current = false;
     }
   }, [content]);
 
