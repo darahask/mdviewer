@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=mdviewer
+Comment=Markdown Viewer and Editor
+Exec=/opt/mdviewer/mdviewer %f
+Icon=/opt/mdviewer/icons/128x128.png
+Terminal=false
+Type=Application
+MimeType=text/markdown;text/x-markdown;
+Categories=Office;TextEditor;Viewer;
+StartupNotify=true

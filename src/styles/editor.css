@@ -1,0 +1,43 @@
+/* CodeMirror overrides to match the app's light theme */
+
+.cm-editor {
+  height: 100%;
+  outline: none !important;
+}
+
+.cm-editor.cm-focused {
+  outline: none !important;
+}
+
+/* Markdown syntax colors */
+.cm-s-default .cm-header { color: #0550ae; font-weight: 700; }
+.cm-s-default .cm-strong { font-weight: 600; }
+.cm-s-default .cm-em { font-style: italic; }
+.cm-s-default .cm-link { color: #0969da; }
+.cm-s-default .cm-url { color: #0969da; }
+.cm-s-default .cm-quote { color: #57606a; }
+.cm-s-default .cm-monospace {
+  font-family: var(--font-mono);
+  background: var(--color-code-bg);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+/* Scrollbar styling */
+.cm-scroller::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.cm-scroller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cm-scroller::-webkit-scrollbar-thumb {
+  background: #d0d7de;
+  border-radius: 4px;
+}
+
+.cm-scroller::-webkit-scrollbar-thumb:hover {
+  background: #b0b8c1;
+}
